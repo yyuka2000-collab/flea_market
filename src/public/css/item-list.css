@@ -1,0 +1,351 @@
+/* =========================================
+   item-list.css – 商品一覧画面
+   ========================================= */
+
+/* リセット */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-red: #f16b6b;
+    --color-red-hover: #e05555;
+    --color-black: #1a1a1a;
+    --color-white: #ffffff;
+    --color-gray-bg: #f5f5f5;
+    --color-gray-border: #d9d9d9;
+    --color-gray-text: #6b6b6b;
+    --font-base: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+}
+
+body {
+    font-family: var(--font-base);
+    background: var(--color-white);
+    color: var(--color-black);
+    min-height: 100vh;
+}
+
+/* 出品登録後メッセージ */
+.flash-message {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: #2e7d32;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 200;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* ヘッダー */
+.header {
+    background: var(--color-black);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.header__logo img {
+    height: 36px;
+    display: block;
+}
+
+.header__search {
+    flex: 1;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.header__search input {
+    width: 100%;
+    height: 36px;
+    border: none;
+    border-radius: 4px;
+    padding: 0 14px;
+    font-size: 13px;
+    font-family: var(--font-base);
+    background: var(--color-white);
+    color: var(--color-black);
+    outline: none;
+}
+
+.header__search input::placeholder {
+    color: var(--color-gray-text);
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.header__logout-form {
+    display: flex;
+    align-items: center;
+}
+
+.header__nav-link {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--font-base);
+    cursor: pointer;
+    white-space: nowrap;
+    opacity: 0.9;
+    transition: opacity 0.15s;
+}
+
+.header__nav-link:hover {
+    opacity: 1;
+}
+
+.header__btn-sell {
+    color: var(--color-black);
+    background: var(--color-white);
+    border: 1.5px solid var(--color-white);
+    border-radius: 4px;
+    padding: 6px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--font-base);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+}
+
+.header__btn-sell:hover {
+    opacity: 0.8;
+}
+
+/* タブ */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    padding: 0 24px;
+    gap: 32px;
+}
+
+.tabs__item {
+    padding: 16px 4px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #888;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.tabs__item--active {
+    color: #ff5555;
+    border-bottom-color: #ff5555;
+    font-weight: 700;
+}
+
+.tabs__item:hover:not(.tabs__item--active) {
+    color: #1a1a1a;
+}
+
+/* コンテナ */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 28px 24px;
+}
+
+/* アイテムグリッド */
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+/* アイテムカード */
+.item-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.item-card:hover {
+    transform: translateY(-4px);
+}
+
+.item-card__img-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    background: #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.item-card__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-card__sold {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-card__sold span {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    border: 3px solid #fff;
+    padding: 4px 14px;
+    border-radius: 2px;
+}
+
+.item-card__name {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #1a1a1a;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 商品なし */
+.empty-state {
+    padding: 80px 0;
+    text-align: center;
+    color: #888;
+    font-size: 15px;
+}
+
+/* =========================================
+   レスポンシブ対応
+   ========================================= */
+
+/* タブレット (768px 〜 1023px) */
+@media screen and (max-width: 1023px) {
+    .header {
+        padding: 0 16px;
+        gap: 12px;
+    }
+
+    .header__search {
+        max-width: 320px;
+    }
+
+    .header__nav {
+        gap: 14px;
+    }
+
+    .tabs {
+        padding: 0 16px;
+        gap: 24px;
+    }
+
+    .container {
+        padding: 20px 16px;
+    }
+
+    .item-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 16px;
+    }
+}
+
+/* スマートフォン (〜 767px) */
+@media screen and (max-width: 767px) {
+    .header {
+        height: auto;
+        flex-wrap: wrap;
+        padding: 10px 16px;
+        gap: 8px;
+    }
+
+    .header__logo img {
+        height: 28px;
+    }
+
+    .header__nav {
+        gap: 12px;
+    }
+
+    .header__search {
+        order: 3;
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin: 0;
+        padding-bottom: 6px;
+    }
+
+    .tabs {
+        padding: 0 12px;
+        gap: 16px;
+    }
+
+    .tabs__item {
+        font-size: 14px;
+        padding: 12px 4px;
+    }
+
+    .container {
+        padding: 16px 12px;
+    }
+
+    .item-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .item-card__sold span {
+        font-size: 16px;
+        letter-spacing: 2px;
+        padding: 3px 10px;
+    }
+
+    .item-card__name {
+        font-size: 13px;
+    }
+
+    .flash-message {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        text-align: center;
+    }
+}

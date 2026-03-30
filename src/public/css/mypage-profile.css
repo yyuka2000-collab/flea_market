@@ -1,0 +1,331 @@
+/* =========================================
+   mypage-profile.css – プロフィール設定画面
+   ========================================= */
+
+/* リセット */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-red: #f16b6b;
+    --color-red-hover: #e05555;
+    --color-black: #1a1a1a;
+    --color-white: #ffffff;
+    --color-gray-bg: #f5f5f5;
+    --color-gray-border: #d9d9d9;
+    --color-gray-text: #6b6b6b;
+    --font-base: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+}
+
+body {
+    font-family: var(--font-base);
+    background: var(--color-white);
+    color: var(--color-black);
+    min-height: 100vh;
+}
+
+/* ヘッダー */
+.header {
+    background: var(--color-black);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.header__search {
+    flex: 1;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.header__search input {
+    width: 100%;
+    height: 36px;
+    border: none;
+    border-radius: 4px;
+    padding: 0 14px;
+    font-size: 13px;
+    font-family: var(--font-base);
+    background: var(--color-white);
+    color: var(--color-black);
+    outline: none;
+}
+
+.header__search input::placeholder {
+    color: var(--color-gray-text);
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.header__logout-form {
+    display: flex;
+    align-items: center;
+}
+
+.header__nav-link {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--font-base);
+    cursor: pointer;
+    white-space: nowrap;
+    opacity: 0.9;
+    transition: opacity 0.15s;
+}
+
+.header__nav-link:hover {
+    opacity: 1;
+}
+
+.header__btn-sell {
+    color: var(--color-black);
+    background: var(--color-white);
+    border: 1.5px solid var(--color-white);
+    border-radius: 4px;
+    padding: 6px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--font-base);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+}
+
+.header__btn-sell:hover {
+    opacity: 0.8;
+}
+
+/* メイン */
+.main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+}
+
+.main__title {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 0.02em;
+}
+
+/* プロフィールフォーム */
+.profile-form__avatar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 36px;
+}
+
+.profile-form__avatar-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #d0d0d0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.profile-form__avatar-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-form__avatar-placeholder {
+    width: 48px;
+    height: 48px;
+    opacity: 0.5;
+}
+
+/* ファイル input は非表示 */
+#avatar-input {
+    display: none;
+}
+
+.profile-form__btn-image {
+    background: transparent;
+    color: var(--color-red);
+    border: 1.5px solid var(--color-red);
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--font-base);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.profile-form__btn-image:hover {
+    background: var(--color-red);
+    color: var(--color-white);
+}
+
+.profile-form__group {
+    margin-bottom: 24px;
+}
+
+.profile-form__label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-black);
+}
+
+.profile-form__input {
+    width: 100%;
+    height: 48px;
+    border: 1.5px solid var(--color-gray-border);
+    border-radius: 4px;
+    padding: 0 14px;
+    font-size: 14px;
+    font-family: var(--font-base);
+    color: var(--color-black);
+    outline: none;
+    transition: border-color 0.15s;
+    background: var(--color-white);
+}
+
+.profile-form__input:focus {
+    border-color: var(--color-black);
+}
+
+.profile-form__input--error {
+    border-color: var(--color-red);
+}
+
+.profile-form__error {
+    font-size: 12px;
+    color: var(--color-red);
+    margin-top: 6px;
+}
+
+.profile-form__btn-submit {
+    width: 100%;
+    height: 52px;
+    background: var(--color-red);
+    color: var(--color-white);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: var(--font-base);
+    cursor: pointer;
+    margin-top: 16px;
+    letter-spacing: 0.04em;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.profile-form__btn-submit:hover {
+    background: var(--color-red-hover);
+}
+
+.profile-form__btn-submit:active {
+    transform: scale(0.99);
+}
+
+/* =========================================
+   レスポンシブ追加 – PC大画面 (1400-1540px)
+   ========================================= */
+
+@media (min-width: 1400px) {
+    .header {
+        padding: 0 48px;
+    }
+
+    .header__nav {
+        gap: 28px;
+    }
+
+    .main {
+        max-width: 640px;
+        padding: 64px 48px 100px;
+    }
+
+    .main__title {
+        font-size: 24px;
+        margin-bottom: 48px;
+    }
+
+    .profile-form__avatar {
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .profile-form__avatar-circle {
+        width: 88px;
+        height: 88px;
+    }
+
+    .profile-form__input {
+        height: 52px;
+        font-size: 15px;
+    }
+
+    .profile-form__btn-submit {
+        height: 56px;
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 1540px) {
+    .header {
+        padding: 0 64px;
+    }
+
+    .main {
+        padding: 80px 64px 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        padding: 32px 16px 60px;
+    }
+
+    .main__title {
+        font-size: 18px;
+        margin-bottom: 32px;
+    }
+
+    .profile-form__avatar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 28px;
+    }
+
+    .profile-form__group {
+        margin-bottom: 20px;
+    }
+}
